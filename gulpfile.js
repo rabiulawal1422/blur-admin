@@ -1,23 +1,15 @@
-'use strict';
+const gulp = require('gulp');
+const browserSync = require('browser-sync').create();
 
-var gulp = require('gulp');
-var wrench = require('wrench');
+function watch(done) {
+  browserSync.init({
+    proxy: 'http://test.local',
+  });
+  gulp.watch('./**/*.css').on('change', browserSync.reload);
+  gulp.watch('js/*.js').on('change', browserSync.reload);
+  gulp.watch('./**/*.php').on('change', browserSync.reload);
 
-/**
- *  This will load all js or coffee files in the gulp directory
- *  in order to load all gulp tasks
- */
-wrench.readdirSyncRecursive('./gulp').filter(function(file) {
-  return (/\.(js|coffee)$/i).test(file);
-}).map(function(file) {
-  require('./gulp/' + file);
-});
+  done();
+}
 
-
-/**
- *  Default task clean temporaries directories and launch the
- *  main optimization build task
- */
-gulp.task('default', ['clean'], function () {
-  gulp.start('build');
-});
+exports.watch = watch;

@@ -45,5 +45,12 @@
   },
   "scripts": {
     "postinstall": "bower install"
-  }
+  },
+  "description": "[![Build Status](https://travis-ci.org/akveo/blur-admin.svg?branch=master)](https://travis-ci.org/akveo/blur-admin)",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "author": "",
+  "license": "ISC"
 }
